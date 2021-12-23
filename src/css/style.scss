@@ -80,8 +80,10 @@ address{
 	padding: 0 15px;
 	margin: 0 auto;
 }
+.swiper-wrapper {
+	min-width: 0;
+}
 @import "variables.scss";
-@import "header.scss";
 .btn {
 	font-family: "Quicksand";
 	font-weight: bold;
@@ -96,4 +98,26 @@ address{
 		color: #2e5fc9;
 		background: #a3b9e9;
 	}
+}
+@import "header.scss";
+@import "swiper-bundle.min.scss";
+@import "slider.scss";
+@import "sponsors.scss";
+@import "plan.scss";
+
+.title {
+	font-family: "Roboto";
+	font-weight: 500;
+	font-size: 10px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color:$blueSecond;
+}
+.text {
+	font-family: "Roboto";
+	font-weight: 400;
+	font-size: 15px;
+	letter-spacing: 0.03em;
+	color:$blueThird;
+	line-height: 29px;
 }

@@ -1,0 +1,31 @@
+.sponsors {
+    margin: 35px 0px;
+    &__container {
+        max-width: 918px;
+        margin: 0 auto;
+        padding: 0px 15px;
+    }
+
+    &__items {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        @media(min-width:$md) {
+            flex-wrap: nowrap;
+        }
+    }
+
+    &__item {
+        margin-top: 15px;
+        flex: 1 1 50%;
+        display: flex;
+        align-self: baseline;
+        justify-content: center;
+        @media(min-width:$md) {
+            flex: 1 1 20%;
+        }
+    }
+
+    &__img {
+    }
+}

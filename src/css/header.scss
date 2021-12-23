@@ -21,6 +21,7 @@
         flex: 1 1 auto;
         justify-content: flex-end;
         transition: left 0.3s linear;
+        z-index: 1000;
         @media(min-width:$md) {
             margin-left: 73px;
             justify-content: space-between;
@@ -59,13 +60,13 @@
     &__burger {
         display: block;
         margin-left: auto;
+        z-index: 1001;
         @media(min-width: $sm) {
             display: none;
         }
         height: 15px;
         width: 30px;
         position: relative;
-        z-index: 101;
         cursor: pointer;
         &:before,
         &:after,

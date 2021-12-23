@@ -1,0 +1,95 @@
+.productivity {
+    position: relative;
+}
+.slide-swiper {
+    height: 548px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    left: -4px !important;
+}
+.swiper {
+    &-slide {
+        position: relative;
+        background-image:url("../img/slider.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        @media (min-width: $lg) {
+            background-size: cover;
+        }
+    }
+    &-text {
+        position: relative;
+        z-index: 2;
+        margin-top: -133px;
+        padding: 0px 15px ;
+        text-align: center;
+        @media (min-width:$md) {
+            margin-top: -95px;
+        }
+        &__subtitle {
+            
+        }
+        &__title {
+            margin-top: 16px;
+            font-family: "Quicksand";
+            font-weight: 300;
+            font-size: 32px;
+            color:$blueSecond;
+            @media (min-width:$md) {
+                font-size: 48px;
+            }
+        }
+        &__text {
+            margin: 0 auto;
+            margin-top: 28px;
+            max-width: 502px;
+            text-align: center;
+        }
+        &__icon {
+            margin: auto;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s linear;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:hover {
+                background-color: rgb(250, 249, 249);
+            }
+            &:hover div {
+                border-color: transparent transparent transparent $blueSecond;
+            }
+            & div {
+                transition: border-color 0.3s linear;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 5.5px 0 5.5px 10px;
+                border-color: transparent transparent transparent $blue;
+            }
+        }
+    }
+    &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        & img {
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+    &-pagination {
+        margin-bottom: 10px;
+    }
+}

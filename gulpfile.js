@@ -1,36 +1,55 @@
-const gulp = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
-const del = require('del');
-const browserSync = require('browser-sync').create();
-const concat = require('concat');
-const cleanCSS = require('gulp-clean-css');
-const sourcemaps = require('gulp-sourcemaps');
-const gulpif = require('gulp-if');
-const uncss = require('gulp-uncss');
-const fileinclude = require('gulp-file-include');
-const sass = require('gulp-sass');
-const gcmq = require('gulp-group-css-media-queries');
-const rename = require("gulp-rename");
-const uglify = require('gulp-uglify-es').default;
-const imagemin = require('gulp-imagemin');
-const webp = require('gulp-webp');
-const webphtml = require('gulp-webp-html');
-const webpCss = require('gulp-webp-css');
-const ttf2woff = require('gulp-ttf2woff');
-const ttf2woff2 = require('gulp-ttf2woff2');
-const fonter = require('gulp-fonter');
-const fs = require('fs');
+/// gulp
+import gulp from  'gulp';
+import del from  'del';
+import browserSync from  'browser-sync';
+import sourcemaps from  'gulp-sourcemaps';
+import gulpif from  'gulp-if';
+import fs from  'fs';
 const isDev = (process.argv.indexOf('--dev') !== -1);
 const isProd = !isDev;
 const isSync = (process.argv.indexOf('--sync') !== -1);
-function clear(){
+console.log(process.argv)
+/// html
+import fileinclude from 'gulp-file-include';
+import webphtml from 'gulp-webp-html';
+
+///css
+import sass from  'gulp-sass';
+import autoprefixer from  'gulp-autoprefixer';
+import concat from  'concat';
+import cleanCSS from  'gulp-clean-css';
+import uncss from  'gulp-uncss';
+import gcmq from  'gulp-group-css-media-queries';
+import rename from  "gulp-rename";
+import webpCss from  'gulp-webp-css';
+
+/// js
+//const uglify = require('gulp-uglify-es').default;
+import webpack from 'webpack-stream';
+
+/// img
+import imagemin from 'gulp-imagemin';
+import webp from 'gulp-webp';
+
+///css
+import ttf2woff from 'gulp-ttf2woff';
+import ttf2woff2 from 'gulp-ttf2woff2';
+import fonter from 'gulp-fonter';
+
+//const __filename = fileURLToPath(import.meta.url);
+//const __dirname = path.dirname(__filename);
+const clear = () => {
 	return del('build/*');
 }
-/*let cssFiles = [	
-	'./src/css/style.css'.pipe(gulp.dest('./build/css'))
-	.on('error',console.error.bind(console))	
-];*/
-function styles() {
+
+const html = () => {
+	return gulp.src('./src/*.html')
+	.pipe(fileinclude())
+	.pipe(webphtml())
+	.pipe(gulp.dest('./build/'))
+	.pipe(browserSync.stream());
+}
+const styles = () => {
 	return gulp.src('./src/css/style.scss')		
 		.pipe(gulpif( isDev,sourcemaps.init()))
 		.pipe(sass())
@@ -56,7 +75,27 @@ function styles() {
 		.pipe(gulp.dest('./build/css'))
 		.pipe(browserSync.stream());
 }
-function img() {
+const mode = `${isDev ? "development" : "production"}` 
+const js = () => {
+	return gulp.src('./src/js/main.js')
+	.pipe(webpack({
+		mode: mode,
+		output: {
+			filename:"main.min.js",
+		},
+		module: {
+				 
+		}
+	}))
+	.pipe(gulp.dest('./build/js'))
+	.pipe(browserSync.stream());
+}
+/*
+rules: [
+				{ test: /\.css$/, use: 'css-loader' }
+			],
+*/ 
+const img = () => {
 	return gulp.src('./src/img/**/*')
 	.pipe(webp({
 		quality:75
@@ -71,13 +110,6 @@ function img() {
 		optimizationLevel:3
 	}))
 	.pipe(gulp.dest('./build/img'))
-	.pipe(browserSync.stream());
-}
-function html() {
-	return gulp.src('./src/*.html')
-	.pipe(fileinclude())
-	.pipe(webphtml())
-	.pipe(gulp.dest('./build/'))
 	.pipe(browserSync.stream());
 }
 
@@ -126,30 +158,28 @@ const fontsScss = `src/css/fonts.scss`;
 const fontsFiles = `build/fonts/`;
 
 const fontsStyle = async () => {
-  return (() => {
+	return (() => {
     const file_content = fs.readFileSync(fontsScss);
-   
     if (file_content != "") {
-      fs.writeFileSync(fontsScss, "");
+		fs.writeFileSync(fontsScss, "");
     }
     fs.readdir(fontsFiles, (_, fonts) => {
-      if (fonts) {
-        return fonts.forEach((item) => {
-        	let woff2 = 'woff2';
-        	if (/woff2/.test(item)) {
-	          const fontname = item.split(".")[0];
-	          const font = fontname.split("-")[0];
-	          const weight = checkWeight(fontname);
-	          const style = fontname.includes("Italic");
-	          fs.appendFileSync(fontsScss,  `@include font("${font}", "${fontname}", ${weight},${style? " italic" : " normal"});\r\n`);
-	      	}
-
-        });
+		if (fonts) {
+			return fonts.forEach((item) => {
+        		let woff2 = 'woff2';
+				if (/woff2/.test(item)) {
+	          		const fontname = item.split(".")[0];
+	          		const font = fontname.split("-")[0];
+	          		const weight = checkWeight(fontname);
+	          		const style = fontname.includes("Italic");
+	          		fs.appendFileSync(fontsScss,  `@include font("${font}", "${fontname}", ${weight},${style? " italic" : " normal"});\r\n`);
+	      		}
+        	});
       }
     });
   })();
 };
-function fonts(){
+const fonts = () =>{
 	 gulp.src('./src/fonts/*.ttf')
 	.pipe(ttf2woff())
 	.pipe(gulp.dest('./build/fonts'));
@@ -157,26 +187,14 @@ function fonts(){
 	.pipe(ttf2woff2())
 	.pipe(gulp.dest('./build/fonts'));
 }
-gulp.task('otf2ttf',function() {
+export const otf2ttf = () =>  {
 	return  gulp.src('./src/fonts/*.otf')
 	.pipe(fonter({
 		formats:['ttf']
 	}))
 	.pipe(gulp.dest('./src/fonts'));
-
-})
-function js() {
-	return gulp.src('./src/js/main.js')
-	.pipe(fileinclude())
-	.pipe(gulp.dest('./build/js'))
-	.pipe(uglify())
-	.pipe(rename({
-			extname:'.min.js'
-		}))
-	.pipe(gulp.dest('./build/js'))
-	.pipe(browserSync.stream());
 }
-function watch() {
+const watch = () => {
 	 if(isSync){
 		browserSync.init({
 	        server: {
@@ -192,7 +210,7 @@ function watch() {
 	gulp.watch('./src/img/**/*', img);
 	gulp.watch('./src/fonts/**/*', fonts);			
 }
-let build = gulp.series(clear,gulp.parallel(styles,js,img,fonts,html),fontsStyle);
+const build = gulp.series(clear,gulp.parallel(styles,img,fonts,js,html),fontsStyle);
 gulp.task('build',build);
 gulp.task('watch',gulp.series(build,watch));
 gulp.task('fontsStyle',fontsStyle);
