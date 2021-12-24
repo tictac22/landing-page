@@ -75,11 +75,6 @@ address{
 	flex-direction: column;
 	position: relative;
 }
-.container{
-    max-width: 1430px;
-	padding: 0 15px;
-	margin: 0 auto;
-}
 .swiper-wrapper {
 	min-width: 0;
 }
@@ -99,11 +94,6 @@ address{
 		background: #a3b9e9;
 	}
 }
-@import "header.scss";
-@import "swiper-bundle.min.scss";
-@import "slider.scss";
-@import "sponsors.scss";
-@import "plan.scss";
 
 .title {
 	font-family: "Roboto";
@@ -121,3 +111,16 @@ address{
 	color:$blueThird;
 	line-height: 29px;
 }
+.container {
+	max-width: 925px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+@import "header.scss";
+@import "swiper-bundle.min.scss";
+@import "slider.scss";
+@import "sponsors.scss";
+@import "plan.scss";
+@import "about.scss";
+@import "productivity.scss";
+@import "blog.scss";

@@ -1,7 +1,6 @@
 .plan {
     padding:170px 0px 216px 0px;
     background: #F5F8FF;
-    position: relative;
     &__container {
         max-width: 925px;
         padding: 0 15px;
@@ -53,6 +52,9 @@
         }
         &-blue {
             width: 130px;
+            @media (min-width:$sm) {
+                width: initial;
+            }
             background-color: $blueFourth;
             box-shadow: 0px 5px 15px rgba(188, 199, 255, 0.75);
             border-radius: 2px;
@@ -94,6 +96,7 @@
         &-grey {
             margin-top: 5px;
             @media (min-width:$sm) {
+                width: initial;
                 margin-top: 0px;
             }
             width: 130px;

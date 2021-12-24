@@ -8,7 +8,6 @@ import fs from  'fs';
 const isDev = (process.argv.indexOf('--dev') !== -1);
 const isProd = !isDev;
 const isSync = (process.argv.indexOf('--sync') !== -1);
-console.log(process.argv)
 /// html
 import fileinclude from 'gulp-file-include';
 import webphtml from 'gulp-webp-html';
@@ -16,28 +15,23 @@ import webphtml from 'gulp-webp-html';
 ///css
 import sass from  'gulp-sass';
 import autoprefixer from  'gulp-autoprefixer';
-import concat from  'concat';
 import cleanCSS from  'gulp-clean-css';
-import uncss from  'gulp-uncss';
 import gcmq from  'gulp-group-css-media-queries';
 import rename from  "gulp-rename";
 import webpCss from  'gulp-webp-css';
 
 /// js
-//const uglify = require('gulp-uglify-es').default;
 import webpack from 'webpack-stream';
 
 /// img
 import imagemin from 'gulp-imagemin';
 import webp from 'gulp-webp';
 
-///css
+///fonts
 import ttf2woff from 'gulp-ttf2woff';
 import ttf2woff2 from 'gulp-ttf2woff2';
 import fonter from 'gulp-fonter';
 
-//const __filename = fileURLToPath(import.meta.url);
-//const __dirname = path.dirname(__filename);
 const clear = () => {
 	return del('build/*');
 }
@@ -45,7 +39,7 @@ const clear = () => {
 const html = () => {
 	return gulp.src('./src/*.html')
 	.pipe(fileinclude())
-	.pipe(webphtml())
+	//.pipe(webphtml())
 	.pipe(gulp.dest('./build/'))
 	.pipe(browserSync.stream());
 }
@@ -53,15 +47,13 @@ const styles = () => {
 	return gulp.src('./src/css/style.scss')		
 		.pipe(gulpif( isDev,sourcemaps.init()))
 		.pipe(sass())
-		.pipe(webpCss())
+		//.pipe(webpCss())
 		.on('error', sass.logError)
-
 		.pipe(gcmq())
-
 		.pipe(autoprefixer({
 				overrideBrowserlist:['>0.3%'],
-	            cascade: false
-	        }))
+				cascade: false
+		}))
 		
 		.pipe(gulpif(isDev,sourcemaps.write()))
 		.pipe(gulp.dest('./build/css'))
@@ -90,25 +82,20 @@ const js = () => {
 	.pipe(gulp.dest('./build/js'))
 	.pipe(browserSync.stream());
 }
-/*
-rules: [
-				{ test: /\.css$/, use: 'css-loader' }
-			],
-*/ 
 const img = () => {
 	return gulp.src('./src/img/**/*')
-	.pipe(webp({
+	/*.pipe(webp({
 		quality:75
 
-	}))
-	.pipe(gulp.dest('./build/img'))
-	.pipe(gulp.src('./src/img/**/*'))
-	.pipe(imagemin({
-		progressive:true,
-		svgoPlugins:[{removeViewBox:false}],
-		interlaced:true,
-		optimizationLevel:3
-	}))
+	}))*/
+	//.pipe(gulp.dest('./build/img'))
+	//.pipe(gulp.src('./src/img/**/*'))
+	//.pipe(imagemin({
+	//	progressive:true,
+	//	svgoPlugins:[{removeViewBox:false}],
+	//	interlaced:true,
+	//	optimizationLevel:3
+	//}))
 	.pipe(gulp.dest('./build/img'))
 	.pipe(browserSync.stream());
 }

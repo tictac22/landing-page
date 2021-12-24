@@ -10,16 +10,17 @@
 .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
     left: -4px !important;
 }
-.swiper {
-    &-slide {
-        position: relative;
-        background-image:url("../img/slider.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        @media (min-width: $lg) {
-            background-size: cover;
-        }
+.slide-swiper {
+    position: relative;
+    background-image:url("../img/slider.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    @media (min-width: $lg) {
+        background-size: cover;
     }
+}
+.swiper {
+    
     &-text {
         position: relative;
         z-index: 2;
