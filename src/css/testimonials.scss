@@ -1,0 +1,37 @@
+.reviews {
+    background: linear-gradient(180deg, #EAF0FF 0%, #F6F9FF 100%);
+    &__inner {
+        padding: 100px 0px;
+        display: flex;
+    }
+
+    &__info {
+        flex: 0 0 100%;
+    }
+
+    &__content {
+        width: 50%;
+    }
+    
+    &__subtitle {
+        color: #3D4F9F;
+        margin-top: 41px;
+    }
+    
+    &__title {
+        margin-top: 14px;
+        font-family: "Quicksand";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 36px;
+        color: #3D4F9F;
+    }
+    &__text {
+        max-width: 323px;
+        margin-top: 14px;
+    }
+    &__slider {
+        flex: 0 0 50%;
+        transform: translateX(-100%);
+    }
+}
