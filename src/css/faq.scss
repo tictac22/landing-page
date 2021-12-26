@@ -1,0 +1,87 @@
+.faq {
+    padding: 176px 0px;
+    &__subtitle {
+        text-align: center;
+    }
+    &__title {
+        text-align: center;
+        margin-top: 20px;
+        font-family: "Quicksand";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        color: #3D4F9F;
+
+    }
+}
+
+.accordion {
+    margin-top: 68px;
+    &__item {
+        border-bottom: 1px solid #D8E3FE;
+    }
+
+    &__item-trigger {
+        display: flex;
+        align-items: center;
+        padding-top: 31px;
+        padding-bottom: 31px;
+        position: relative;
+        transition: all 0.7s linear;
+        &-active .accordion__item-arrow {
+            transform: translateY(-36%) rotate(-135deg);
+            border-color:#495274;
+        }
+        &-active .accordion__item-title {
+            color: #495274;
+        }
+    }
+
+    &__item-arrow {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        border: solid #495274;
+        border-width: 0 4px 4px 0;
+        display: inline-block;
+        padding: 4px;
+        transform: translateY(-72%) rotate(45deg);
+    }
+    
+    &__item-title {
+        margin-left: 24px;
+        font-family: "Roboto";
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.03em;
+        color: #8E96B7;
+        transition: all 0.3s linear;
+    }
+
+    &__item-content {
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.3s linear;
+        &-active {
+            opacity: 1;
+        }
+    }
+
+    &__item-text {
+        margin: 20px 0px 40px 0px;
+        max-width: 622px;
+        margin-left: 54px;
+    }
+
+    &__item-btn {
+        transition: all 0.3s linear;
+        background-color: #E8ECF4;
+        color: #7382A3;
+        &:hover {
+            background-color: #c3cee2;
+            color: #5a71a2;
+        }
+    }
+}

@@ -43,3 +43,47 @@ document.querySelectorAll('.lightgallery').forEach(item => {
     });
     
 })
+
+new Swiper('.slider-review__swiper', {
+    modules: [Pagination],
+    slidesPerView:1,
+    loop:true,
+    pagination: {
+        el: '.slider-review__pagination',
+        type: 'bullets',
+        clickable:true,
+    },
+    breakpoints: {
+        576: {
+            slidesPerView: "auto",
+            spaceBetween: 32,
+        },
+    }
+})
+
+
+
+const accordionItems = document.querySelectorAll(".accordion__item-content");
+const heights = [...accordionItems].map(item=>item.clientHeight);
+[...accordionItems].forEach(item=>item.style.maxHeight = "0px");
+
+const triggers = document.querySelectorAll(".accordion__item-trigger")
+triggers.forEach((item,index)=>{
+    item.addEventListener("click",e=>{
+        const accordionParent = e.target.closest(".accordion");
+        if(accordionItems[index].classList.contains("accordion__item-content-active")) {
+            accordionItems[index].style.maxHeight =`${0}px`;
+            accordionItems[index].classList.remove("accordion__item-content-active")
+            item.classList.remove("accordion__item-trigger-active")
+        } else {
+            accordionParent.querySelectorAll(".accordion__item-content-active").forEach(item=>{
+                item.classList.remove("accordion__item-content-active")
+                item.style.maxHeight =`${0}px`;
+            })
+            accordionParent.querySelectorAll(".accordion__item-trigger").forEach(item=>item.classList.remove("accordion__item-trigger-active"))
+            accordionItems[index].style.maxHeight =`${heights[index]}px`;
+            accordionItems[index].classList.add("accordion__item-content-active")
+            item.classList.add("accordion__item-trigger-active")
+        }
+    })
+})
