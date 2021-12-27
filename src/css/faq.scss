@@ -1,5 +1,9 @@
 .faq {
-    padding: 176px 0px;
+    padding: 85px 0px;
+    @media(max-width:925px) {
+        padding-top:calc(22px + (85 - 22) * ((100vw - 320px) / (950 - 320)));
+        padding-bottom:calc(22px + (85 - 22) * ((100vw - 320px) / (950 - 320)));
+    }
     &__subtitle {
         text-align: center;
     }
@@ -17,6 +21,9 @@
 
 .accordion {
     margin-top: 68px;
+    @media(max-width:925px) {
+        margin-top:calc(0px + (68 - 0) * ((100vw - 320px) / (950 - 320)));
+    }
     &__item {
         border-bottom: 1px solid #D8E3FE;
     }
@@ -26,6 +33,10 @@
         align-items: center;
         padding-top: 31px;
         padding-bottom: 31px;
+        @media(max-width:925px) {
+            padding-top:calc(16px + (31 - 16) * ((100vw - 320px) / (950 - 320)));
+            padding-bottom:calc(16px + (31 - 16) * ((100vw - 320px) / (950 - 320)));
+        }
         position: relative;
         transition: all 0.7s linear;
         &-active .accordion__item-arrow {
@@ -38,6 +49,7 @@
     }
 
     &__item-arrow {
+        cursor: pointer;
         position: absolute;
         top: 50%;
         left: 0;
@@ -49,6 +61,7 @@
     }
     
     &__item-title {
+        cursor: pointer;
         margin-left: 24px;
         font-family: "Roboto";
         font-weight: 500;
@@ -60,9 +73,16 @@
 
     &__item-content {
         display: flex;
-        align-items: center;
         opacity: 0;
+        justify-content: space-between;
         overflow: hidden;
+        margin-bottom: 15px;
+        flex-direction: column;
+        @media (min-width:$sm) {
+            align-items: center;
+            margin-bottom: 0px;
+            flex-direction: row;
+        }
         transition: all 0.3s linear;
         &-active {
             opacity: 1;
@@ -70,14 +90,26 @@
     }
 
     &__item-text {
-        margin: 20px 0px 40px 0px;
+        margin: 20px 20px 20px 0px;
         max-width: 622px;
-        margin-left: 54px;
+        @media (min-width:$sm) {
+            margin: 20px 20px 40px 0px;
+        }
+        @media(min-width: $lg) {
+            margin: 20px 0px 40px 54px;
+        }
     }
 
     &__item-btn {
+        margin-right: auto;
         transition: all 0.3s linear;
         background-color: #E8ECF4;
+        margin-bottom: 20px;
+        @media (min-width:$sm) {
+            margin-right: 15px;
+            margin-bottom: 0px;
+        }
+        white-space: nowrap;
         color: #7382A3;
         &:hover {
             background-color: #c3cee2;

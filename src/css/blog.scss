@@ -161,19 +161,30 @@ img[src="../img/gallery3.jpg"] {
 
     &__extra {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         margin-top: 10px;
+        @media(min-width: 375px) {
+            align-items: center;
+            flex-direction: row;
+        }
     }
 
     &__read {
+        margin-right: auto;
+        @media(min-width: 375px) {
+            margin-right: 0px !important;
+        }
     }
 
     &__add {
         font-family: "Quicksand";
         font-weight: bold;
         font-size: 13px;
+        margin: 10px 0px 0px 0px;
         color: #A6B6DA;
-        margin-left: 12px;
+        @media(min-width: 375px) {
+            margin: 0px 0px 0px 12px;
+        }
         @media (min-width:$sm) {
             margin-left: 24px;
         }

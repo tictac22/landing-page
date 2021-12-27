@@ -1,0 +1,24 @@
+.footer {
+    border-top: 1px solid #D8E3FE;
+    padding: 20px 0px;
+    &__body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__logo {
+        background: #5E81FE;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+    }
+
+    &__copy {
+        font-family: "Quicksand";
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        color: #AEB8D0;
+
+    }
+}

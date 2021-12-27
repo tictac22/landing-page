@@ -94,7 +94,9 @@ address{
 		background: #a3b9e9;
 	}
 }
-
+.main {
+	flex:  1 1 auto;
+}
 .title {
 	font-family: "Roboto";
 	font-weight: 500;
@@ -127,4 +129,9 @@ address{
 @import "lightgallery-bundle.min.scss";
 @import "testimonials.scss";
 @import "faq.scss";
+@import "start.scss";
+@import "signup.scss";
+@import "footer.scss";
+
+
 

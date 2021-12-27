@@ -82,13 +82,14 @@
             display: block;
         }
         position: absolute;
-        bottom: -10px !important;
-        width: 48px !important;
-        left: 53% !important;
+        bottom: -8px !important;
+        width: 50px !important;
+        left: 50% !important;
         transform: translateX(-50%);
         @media (min-width:$lg) {
             left: 46.5% !important;
             transform: translateX(0);
+            bottom: -18px !important;
         }
         height: 3px;
     }
