@@ -4,16 +4,20 @@ import { mobileIs } from './isMobile.js';
 import lightGallery from 'lightgallery';
 
 window.addEventListener("load",()=>{
-
     const burger = document.querySelector(".header__burger")
     const headerMenu = document.querySelector(".header__menu")
-
-    burger.addEventListener("click", ()=> {
+    burger.addEventListener("click",e=> {
         burger.classList.toggle("header__burger--active")
         headerMenu.classList.toggle("header__menu--active")
+        
     })
-
-    new Swiper('.productivity', {
+    document.querySelectorAll(".list-header__link").forEach(item=>{
+        item.addEventListener("click",()=>{
+            item.closest(".header__menu").classList.remove("header__menu--active")
+            item.closest(".header").querySelector(".header__burger").classList.remove("header__burger--active")
+        })
+    })
+    new Swiper('.main-slider', {
         modules: [Autoplay, Pagination],
         pagination: {
             el: '.swiper-pagination',
@@ -67,8 +71,6 @@ window.addEventListener("load",()=>{
     const accordionItems = document.querySelectorAll(".accordion__item-content");
     const heights = [...accordionItems].map(item=>item.offsetHeight);
     [...accordionItems].forEach(item=>item.style.maxHeight = "0px");
-    console.log(heights)
-
     const triggers = document.querySelectorAll(".accordion__item-trigger")
     triggers.forEach((item,index)=>{
         item.addEventListener("click",e=>{
@@ -90,3 +92,20 @@ window.addEventListener("load",()=>{
         })
     })
 })
+if(!(getComputedStyle(document.querySelector("html")).scrollBehavior === 'smooth')){
+    document.querySelectorAll(".list-header__link").forEach(item=>{
+        item.addEventListener("click",()=>{
+            const href = item.getAttribute('href').replace("#","")
+            const scrollEnd = document.querySelector(`#${href}`).offsetTop;
+            let start = item.offsetTop
+            const scrollInterval = setInterval(timer,20);
+            function timer(){
+                start = start + 100;
+                window.scroll(0,start);
+                if(start > scrollEnd){
+                    clearInterval(scrollInterval)
+                }
+            }
+        })
+    })
+}

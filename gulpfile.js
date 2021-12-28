@@ -5,6 +5,9 @@ import browserSync from  'browser-sync';
 import sourcemaps from  'gulp-sourcemaps';
 import gulpif from  'gulp-if';
 import fs from  'fs';
+import replace from 'gulp-replace';
+import path from "path"
+const __dirname = path.resolve()
 const isDev = (process.argv.indexOf('--dev') !== -1);
 const isProd = !isDev;
 const isSync = (process.argv.indexOf('--sync') !== -1);
@@ -19,7 +22,7 @@ import cleanCSS from  'gulp-clean-css';
 import gcmq from  'gulp-group-css-media-queries';
 import rename from  "gulp-rename";
 import webpCss from  'gulp-webp-css';
-
+import critical from 'critical';
 /// js
 import webpack from 'webpack-stream';
 
@@ -40,6 +43,7 @@ const html = () => {
 	return gulp.src('./src/*.html')
 	.pipe(fileinclude())
 	//.pipe(webphtml())
+	.pipe(replace('../', './'))
 	.pipe(gulp.dest('./build/'))
 	.pipe(browserSync.stream());
 }
@@ -54,12 +58,12 @@ const styles = () => {
 				overrideBrowserlist:['>0.3%'],
 				cascade: false
 		}))
-		
 		.pipe(gulpif(isDev,sourcemaps.write()))
 		.pipe(gulp.dest('./build/css'))
 
 		.pipe(gulpif(isProd ,cleanCSS({
-			level:1
+			level:1,
+			urlQuotes:true
 		})))		
 		.pipe(rename({
 			extname:'.min.css'
@@ -84,20 +88,17 @@ const js = () => {
 }
 const img = () => {
 	return gulp.src('./src/img/**/*')
-	/*.pipe(webp({
-		quality:75
-
-	}))*/
-	//.pipe(gulp.dest('./build/img'))
-	//.pipe(gulp.src('./src/img/**/*'))
-	//.pipe(imagemin({
-	//	progressive:true,
-	//	svgoPlugins:[{removeViewBox:false}],
-	//	interlaced:true,
-	//	optimizationLevel:3
-	//}))
-	.pipe(gulp.dest('./build/img'))
-	.pipe(browserSync.stream());
+		.pipe(webp())
+		.pipe(gulp.dest('./build/img'))
+		.pipe(gulp.src('./src/img/**/*'))
+		.pipe(imagemin({
+			progressive:true,
+			svgoPlugins:[{removeViewBox:false}],
+			interlaced:true,
+			optimizationLevel:2
+		}))
+		.pipe(gulp.dest('./build/img'))
+		.pipe(browserSync.stream());
 }
 
 const checkWeight = (fontname) => {
@@ -197,7 +198,53 @@ const watch = () => {
 	gulp.watch('./src/img/**/*', img);
 	gulp.watch('./src/fonts/**/*', fonts);			
 }
-const build = gulp.series(clear,gulp.parallel(styles,img,fonts,js,html),fontsStyle);
+
+const criticalCss = async done => {
+	let pages = ['index'];
+	await critical.generate({
+		base: './build/',
+		src: 'index.html',
+		inline: false,
+		css: ['./build/css/style.min.css'],
+		target: {
+			css: 'css/critical.css',
+			uncritical: 'css/uncritical.css',
+		},
+		width: 1074,
+		height: 605,
+		ignore: {
+			atrule: ["@font-face"]
+		}
+	});
+	done();
+};
+const changeHtml = done => {
+	let html = fs.readFileSync("./build/index.html", "utf8");
+	fs.unlinkSync(path.join(__dirname,"build","index.html"));
+	let criticalCss = fs.readFileSync("./build/css/critical.css", "utf8");
+	html = html.replace(`<link rel="stylesheet" href="./css/style.min.css">`, `<style>${criticalCss}</style>`);
+	let asyncCss = `<script>
+	function loadStyle(url){
+		let link = document.createElement('link');
+		link.href = url;
+		link.rel = 'stylesheet';
+		document.body.appendChild(link);
+	}
+	loadStyle('./css/uncritical.css');
+	</script>`;
+	html = html.replace('</body>', `${asyncCss}</body>`);
+	fs.writeFile(path.join(__dirname,"build","index.html"),html,err=>{
+		if (err) {
+			throw err
+		}
+	})
+	done();
+};
+
+const dev = gulp.series(clear,gulp.parallel(styles,img,fonts,js,html),fontsStyle);
+const build = gulp.series(clear, gulp.parallel(styles, js, img, fonts, html), fontsStyle);
+const criticalBuild = gulp.series(html,criticalCss,changeHtml)
 gulp.task('build',build);
-gulp.task('watch',gulp.series(build,watch));
+gulp.task('watch',gulp.series(dev,watch));
 gulp.task('fontsStyle',fontsStyle);
+gulp.task("critical",criticalBuild)

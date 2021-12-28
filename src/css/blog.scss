@@ -1,9 +1,9 @@
 .blog {
     background: #F5F8FF;
     &__inner {
-        margin:25px 0;
+        padding:25px 0;
         @media (min-width:$md) {
-            margin: 104px 0px;
+            padding: 104px 0px;
         }
     }
     &__container {
@@ -47,7 +47,7 @@
 .body__mobile .swipe__gallery-big:before {
     opacity: 1;
 }
-img[src="../img/gallery3.jpg"] {
+img[src="./img/gallery3.jpg"] {
     border-radius: 6px;
 }
 .swipe {

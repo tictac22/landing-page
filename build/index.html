@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="....">
-    <link rel="preload" href="/fonts/OpenSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/Quicksand-Medium.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/Quicksand-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./fonts/OpenSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./fonts/Quicksand-Medium.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./fonts/Quicksand-Bold.woff2" as="font" type="font/woff2" crossorigin>
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.min.css">
+    <link rel="stylesheet" href="./css/style.min.css">
 </head>
-<body>
+<body id="home">
     <div class="wrapper">
         <div class="main">
             <header class="header">
@@ -22,17 +22,17 @@
             </div>
             <nav class="header__menu">
                 <ul class="header__list list-header list-header__nav">
-                    <li class="list-header__item"><a href="/" class="list-header__link">Home</a></li>
-                    <li class="list-header__item"><a href="/" class="list-header__link">Blog</a></li>
-                    <li class="list-header__item"><a href="/" class="list-header__link">Features</a></li>
-                    <li class="list-header__item"><a href="/" class="list-header__link">Pricing</a></li>
-                    <li class="list-header__item"><a href="/" class="list-header__link">Documentation</a></li>
+                    <li class="list-header__item"><a href="#home" class="list-header__link">Home</a></li>
+                    <li class="list-header__item"><a href="#features" class="list-header__link">Features</a></li>
+                    <li class="list-header__item"><a href="#blog" class="list-header__link">Blog</a></li>
+                    <li class="list-header__item"><a href="#documentation" class="list-header__link">Documentation</a></li>
+                    <li class="list-header__item"><a href="#pricing" class="list-header__link">Pricing</a></li>
                 </ul>
                 <ul class="header__list list-header list-header__socials">
-                    <li class="list-header__item"><img src="../img/svg/facebook.svg" alt="facebook" class="list-header__link"/></li>
-                    <li class="list-header__item"><img src="../img/svg/telegram.svg" alt="telegram" class="list-header__link"/></li>
-                    <li class="list-header__item"><img src="../img/svg/twitter.svg" alt="twitter" class="list-header__link"/></li>
-                    <li class="list-header__item"><img src="../img/svg/m.svg" alt="m" class="list-header__link"/></li>
+                    <li class="list-header__item"><img src="./img/svg/facebook.svg" alt="facebook" class="list-header__link"/></li>
+                    <li class="list-header__item"><img src="./img/svg/telegram.svg" alt="telegram" class="list-header__link"/></li>
+                    <li class="list-header__item"><img src="./img/svg/twitter.svg" alt="twitter" class="list-header__link"/></li>
+                    <li class="list-header__item"><img src="./img/svg/m.svg" alt="m" class="list-header__link"/></li>
                     <div>
                         <a href="/" class="btn">Get started</a>
                     </div>
@@ -41,7 +41,7 @@
     </div>
 </header>
             <section class="slider">
-  <div class="swiper productivity">
+  <div class="swiper main-slider">
     <div class="swiper-wrapper">
       <div class="swiper-slide slide-swiper">
         <div class="swiper-text">
@@ -88,33 +88,33 @@
         <div class="sponsors__items">
             <div class="sponsors__item">
                 <div class="sponsors__img">
-                    <img src="../img/bitbucket.jpg" alt="bitbucket">
+                    <img src="./img/bitbucket.jpg" alt="bitbucket">
                 </div>
             </div>
             <div class="sponsors__item">
                 <div class="sponsors__img">
-                    <img src="../img/apple.png" alt="bitbucket">
+                    <img src="./img/apple.png" alt="bitbucket">
                 </div>
             </div>
             <div class="sponsors__item">
                 <div class="sponsors__img">
-                    <img src="../img/facebook.png" alt="bitbucket">
+                    <img src="./img/facebook.png" alt="bitbucket">
                 </div>
             </div>
             <div class="sponsors__item">
                 <div class="sponsors__img">
-                    <img src="../img/atlassian.png" alt="bitbucket">
+                    <img src="./img/atlassian.png" alt="bitbucket">
                 </div>
             </div>
             <div class="sponsors__item">
                 <div class="sponsors__img">
-                    <img src="../img/audi.png" alt="bitbucket">
+                    <img src="./img/audi.png" alt="bitbucket">
                 </div>
             </div>
         </div>
     </div>
 </section>
-            <section class="plan">
+            <section class="plan" id="features">
     <div class="plan__container">
         <div class="plan__content">
             <p class="plan__subtitle title">DESKTOP AND MOBILE APP</p>
@@ -127,7 +127,7 @@
                 <a href="/" class="plan__btns-grey">See features</a>
             </div>
         </div>
-        <img src="../img/plan.svg" alt="">
+        <img src="./img/plan.svg" alt="">
     </div>
 </section>
             <section class="about">
@@ -138,7 +138,7 @@
             <div class="about__column">
                 <div class="about__item item-about">
                     <div class="item-about__img">
-                        <img src="../img/svg/overview.svg" alt="overview">
+                        <img src="./img/svg/overview.svg" alt="overview">
                     </div>
                     <h4 class="item-about__title">Overview</h4>
                     <p class="item-about__text">
@@ -149,7 +149,7 @@
             <div class="about__column">
                 <div class="about__item item-about">
                     <div class="item-about__img">
-                        <img src="../img/svg/files.svg" alt="overview">
+                        <img src="./img/svg/files.svg" alt="overview">
                     </div>
                     <h4 class="item-about__title">Files</h4>
                     <p class="item-about__text">
@@ -160,7 +160,7 @@
             <div class="about__column">
                 <div class="about__item item-about">
                     <div class="item-about__img">
-                        <img src="../img/svg/chats.svg" alt="overview">
+                        <img src="./img/svg/chats.svg" alt="overview">
                     </div>
                     <h4 class="item-about__title">Meeting chats</h4>
                     <p class="item-about__text">
@@ -171,7 +171,7 @@
             <div class="about__column">
                 <div class="about__item item-about">
                     <div class="item-about__img">
-                        <img src="../img/svg/save.svg" alt="overview">
+                        <img src="./img/svg/save.svg" alt="overview">
                     </div>
                     <h4 class="item-about__title">Save events</h4>
                     <p class="item-about__text">
@@ -192,7 +192,7 @@
         <div class="productivity__column productivity__column-left">
             <div class="productivity__item">
                 <div class="productivity__img">
-                    <img src="../img/svg/productivity.svg" alt="productivity">
+                    <img src="./img/svg/productivity.svg" alt="productivity">
                 </div>
                 <p class="productivity__percents productivity__percents-left">
                     89%
@@ -205,7 +205,7 @@
         <div class="productivity__column productivity__column-right">
             <div class="productivity__item">
                 <div class="productivity__img">
-                    <img src="../img/svg/users.svg" alt="productivity">
+                    <img src="./img/svg/users.svg" alt="productivity">
                 </div>
                 <p class="productivity__percents productivity__percents-right">
                     3123
@@ -217,7 +217,7 @@
         </div>
     </div>
 </section>
-            <section class="blog">
+            <section class="blog" id="blog">
     <div class="blog__inner">
         <div class="blog__container container">
             <h2 class="blog__title title">OUR RESOURCES</h2>
@@ -227,14 +227,14 @@
                     <div class="swiper-wrapper blog__swipe swipe">
                         <div class="swiper-slide swipe__container">
                             <div class="swipe__gallery lightgallery">
-                                <div data-src="../img/gallery.jpg" class="swipe__gallery-big">
-                                        <img src="../img/gallery.jpg" alt="gallery">
+                                <div data-src="./img/gallery.jpg" class="swipe__gallery-big">
+                                        <img src="./img/gallery.jpg" alt="gallery">
                                 </div>
-                                <div data-src="../img/gallery2.jpg" class="swipe__gallery-small swipe__gallery-small-1">
-                                        <img src="../img/gallery2.jpg" alt="gallery">
+                                <div data-src="./img/gallery2.jpg" class="swipe__gallery-small swipe__gallery-small-1">
+                                        <img src="./img/gallery2.jpg" alt="gallery">
                                 </div>
-                                <div data-src="../img/gallery3.jpg" class="swipe__gallery-small swipe__gallery-small-2">
-                                        <img src="../img/gallery3.jpg" alt="gallery">
+                                <div data-src="./img/gallery3.jpg" class="swipe__gallery-small swipe__gallery-small-2">
+                                        <img src="./img/gallery3.jpg" alt="gallery">
                                 </div>
                             </div>
                             <div class="swipe__info">
@@ -279,7 +279,7 @@
                                 tractatos ius an, in mel diceret persecuti.
                             </p>
                             <div class="slider-review__img">
-                                <img src="../img/testimonials.jpg" alt="testimonials">
+                                <img src="./img/testimonials.jpg" alt="testimonials">
                             </div>
                         </div>
                         <div class="swiper-slide slider-review__slide">
@@ -288,7 +288,7 @@
                                 tractatos ius an, in mel diceret persecuti.
                             </p>
                             <div class="slider-review__img">
-                                <img src="../img/testimonials.jpg" alt="testimonials">
+                                <img src="./img/testimonials.jpg" alt="testimonials">
                             </div>
                         </div>
                         <div class="swiper-slide slider-review__slide">
@@ -297,7 +297,7 @@
                                 tractatos ius an, in mel diceret persecuti.
                             </p>
                             <div class="slider-review__img">
-                                <img src="../img/testimonials.jpg" alt="testimonials">
+                                <img src="./img/testimonials.jpg" alt="testimonials">
                             </div>
                         </div>
                     </div>
@@ -307,7 +307,7 @@
         </div>
     </div>
 </section>
-            <section class="faq">
+            <section class="faq" id="documentation">
     <div class="container">
         <p class="faq__subtitle title">
             Customer help
@@ -371,7 +371,7 @@
         </div>
     </div>
 </section>
-            <section class="start">
+            <section class="start" id="pricing">
     <div class="container">
         <p class="start__subtitle title">PLAN YOUR LIFE</p>
         <h2 class="start__title">Get <span>started</span> now</h2>

@@ -22,9 +22,13 @@ html,body{
 	box-sizing: border-box;
 	height: 100%;
 	width: 100%;
-	overflow-x: hidden;
 	font-size: 18px;
-	
+}
+body {
+	overflow-x: hidden;
+}
+html {
+	scroll-behavior: smooth;
 }
 body._lock{
 	overflow: hidden;
@@ -33,7 +37,6 @@ h1,h2,h3,h4,h5,h6,ul{
 	margin: 0;
 	padding:0;
 }
-
 a{
 	text-decoration: none;
 	color: inherit;
