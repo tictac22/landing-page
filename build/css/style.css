@@ -804,9 +804,11 @@ button.swiper-pagination-bullet {
   align-items: center;
 }
 
+.no-webp .slide-swiper {
+  background-image: url("../img/slider.png"); }
+
 .slide-swiper {
   position: relative;
-  background-image: url("../img/slider.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -1008,10 +1010,12 @@ button.swiper-pagination-bullet {
   border: 1px solid #b5b5c7;
 }
 
+.no-webp .about {
+  background-image: url("../img/clouds.png"); }
+
 .about {
   padding: 50px 0px;
   position: relative;
-  background-image: url("../img/clouds.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1193,7 +1197,7 @@ img[src="./img/gallery3.jpg"] {
   background: #FFFFFF;
   display: flex;
   flex-wrap: wrap;
-  padding: 40px 10px;
+  padding: 20px 10px;
 }
 
 .swipe__gallery {
@@ -1209,7 +1213,8 @@ img[src="./img/gallery3.jpg"] {
 }
 
 .swipe__gallery-big img {
-  border-radius: 6px;
+  height: 100%;
+  border-radius: 14px;
   width: 100%;
 }
 
@@ -1240,6 +1245,7 @@ img[src="./img/gallery3.jpg"] {
 }
 
 .swipe__gallery-small img {
+  border-radius: 14px;
   height: 100%;
   width: 100%;
 }
@@ -2122,8 +2128,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   color: #5a71a2;
 }
 
+.no-webp .start {
+  background-image: url("../img/start.png"); }
+
 .start {
-  background-image: url("../img/start.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -2583,29 +2591,22 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
 
   .swipe__gallery {
+    grid-template-columns: 126px 126px 126px;
     grid-template-rows: 1fr 1fr;
   }
 
   .swipe__gallery-big {
-    grid-column: 1 / 2;
+    grid-column: 1 / 3;
     grid-row: 1 / 3;
   }
 
-  .swipe__gallery-big img {
-    width: initial;
-  }
-
-  .swipe__gallery-small img {
-    width: initial;
-  }
-
   .swipe__gallery-small-2 {
-    grid-column: -3;
+    grid-column: -2;
   }
 
   .swipe__info {
     flex: 0 1 50%;
-    margin: 0px 0px 0px 67px;
+    margin: 0px 0px 0px 24px;
   }
 
   .reviews__inner {
@@ -2747,3 +2748,9 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     margin-top: 10px;
   }
 }
+
+.webp .slide-swiper { background-image: url(../img/slider.webp); }
+
+.webp .about { background-image: url(../img/clouds.webp); }
+
+.webp .start { background-image: url(../img/start.webp); }

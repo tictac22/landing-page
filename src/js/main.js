@@ -2,8 +2,10 @@
 import Swiper, { Navigation, Pagination,Autoplay  } from 'swiper';
 import { mobileIs } from './isMobile.js';
 import lightGallery from 'lightgallery';
+import { isWebp } from './webpSupport.js';
 
 window.addEventListener("load",()=>{
+    isWebp()
     const burger = document.querySelector(".header__burger")
     const headerMenu = document.querySelector(".header__menu")
     burger.addEventListener("click",e=> {

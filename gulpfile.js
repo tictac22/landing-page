@@ -13,7 +13,7 @@ const isProd = !isDev;
 const isSync = (process.argv.indexOf('--sync') !== -1);
 /// html
 import fileinclude from 'gulp-file-include';
-import webphtml from 'gulp-webp-html';
+import webphtml from 'gulp-webp-html-nosvg';
 
 ///css
 import sass from  'gulp-sass';
@@ -21,8 +21,10 @@ import autoprefixer from  'gulp-autoprefixer';
 import cleanCSS from  'gulp-clean-css';
 import gcmq from  'gulp-group-css-media-queries';
 import rename from  "gulp-rename";
-import webpCss from  'gulp-webp-css';
+import webpcss  from "gulp-webpcss";
 import critical from 'critical';
+import postcss from 'gulp-postcss';
+import cssnano from "cssnano"
 /// js
 import webpack from 'webpack-stream';
 
@@ -42,7 +44,7 @@ const clear = () => {
 const html = () => {
 	return gulp.src('./src/*.html')
 	.pipe(fileinclude())
-	//.pipe(webphtml())
+	.pipe(webphtml())
 	.pipe(replace('../', './'))
 	.pipe(gulp.dest('./build/'))
 	.pipe(browserSync.stream());
@@ -51,20 +53,29 @@ const styles = () => {
 	return gulp.src('./src/css/style.scss')		
 		.pipe(gulpif( isDev,sourcemaps.init()))
 		.pipe(sass())
-		//.pipe(webpCss())
-		.on('error', sass.logError)
 		.pipe(gcmq())
+		.on('error', sass.logError)
+		.pipe(webpcss({
+			webpClass:".webp",
+			noWebpClass:".no-webp"
+		}))
 		.pipe(autoprefixer({
 				overrideBrowserlist:['>0.3%'],
 				cascade: false
 		}))
 		.pipe(gulpif(isDev,sourcemaps.write()))
 		.pipe(gulp.dest('./build/css'))
-
-		.pipe(gulpif(isProd ,cleanCSS({
-			level:1,
-			urlQuotes:true
-		})))		
+		.pipe(postcss([ cssnano({
+			minifyFontValues: { removeQuotes: false }
+		}) ]))
+		/*.pipe(gulpif(isProd ,cleanCSS({
+			level:{
+				1: {
+					normalizeUrls:false,
+					removeQuotes:false
+				}
+			},
+		})))*/	
 		.pipe(rename({
 			extname:'.min.css'
 		}))
