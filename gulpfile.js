@@ -82,7 +82,7 @@ const styles = () => {
 		.pipe(gulp.dest('./build/css'))
 		.pipe(browserSync.stream());
 }
-const mode = `${isDev ? "development" : "production"}` 
+const mode = `${false ? "development" : "production"}` 
 const js = () => {
 	return gulp.src('./src/js/main.js')
 	.pipe(webpack({
@@ -259,3 +259,4 @@ gulp.task('build',build);
 gulp.task('watch',gulp.series(dev,watch));
 gulp.task('fontsStyle',fontsStyle);
 gulp.task("critical",criticalBuild)
+gulp.task("js",js)
