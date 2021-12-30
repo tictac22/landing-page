@@ -65,17 +65,9 @@ const styles = () => {
 		}))
 		.pipe(gulpif(isDev,sourcemaps.write()))
 		.pipe(gulp.dest('./build/css'))
-		.pipe(postcss([ cssnano({
-			minifyFontValues: { removeQuotes: false }
-		}) ]))
-		/*.pipe(gulpif(isProd ,cleanCSS({
-			level:{
-				1: {
-					normalizeUrls:false,
-					removeQuotes:false
-				}
-			},
-		})))*/	
+		.pipe(gulpif(isProd ,cleanCSS({
+			level:1
+		})))
 		.pipe(rename({
 			extname:'.min.css'
 		}))
